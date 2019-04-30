@@ -1,0 +1,174 @@
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
+      />
+      <link rel="stylesheet" href="https://rsms.me/inter/inter-ui.css" />
+      <link rel="stylesheet" href="src/styles.css" />
+      <script src="https://code.jquery.com/jquery-3.4.0.min.js" defer></script>
+      <script src="src/index.js" defer></script>
+   </head>
+   <body>
+      <header class="header">Plan✕<span class="beta">beta</span></header>
+      <div role="main" id="main">
+         <div id="content" class="content">
+            <div class="content-container">
+               <form id="form">
+                  <div class="form-row">
+                     <h2>Help us test Plan✕.</h2>
+                     <p>
+                        The first version of Plan✕ is currently in testing. We
+                        would love your feedback on it. Enter your details below
+                        to get early test access.
+                     </p>
+                  </div>
+                  <div class="form-row">
+                     <input
+                        class="form-control"
+                        name="email"
+                        required
+                        tabindex="1"
+                        type="email"
+                        placeholder="email address"
+                     />
+                  </div>
+                  <div id="extra-info" class="extra-info">
+                     <div>
+                        <div class="form-row">
+                           <div class="select-question" id="select-container">
+                              <label for="select">I am</label>
+                              <select id="select" class="ie-select" required name="occupation">
+                                 <option disabled selected value="">Select</option>
+                                 <option value="homeowner">a homeowner</option>
+                                 <option value="developer">a developer</option>
+                                 <option value="agent">an agent</option>
+                                 <option value="council">a council employee</option>
+                                 <option value="interested">just interested</option>
+                              </select>
+                              <div class="radio-select">
+                                 <input
+                                    type="checkbox"
+                                    id="select_label"
+                                    name="occupation"
+                                    class="select-label"
+                                 /><label for="select_label"></label>
+                                 <div id="options" class="options">
+                                    <input
+                                       type="radio"
+                                       value="homeowner"
+                                       id="occupation_homeowner"
+                                       name="occupation"
+                                    />
+                                    <label for="occupation_homeowner"
+                                       >a homeowner</label
+                                    >
+                                    <input
+                                       type="radio"
+                                       value="developer"
+                                       id="occupation_developer"
+                                       name="occupation"
+                                    />
+                                    <label for="occupation_developer"
+                                       >a developer</label
+                                    >
+                                    <input
+                                       type="radio"
+                                       value="agent"
+                                       id="occupation_agent"
+                                       name="occupation"
+                                    />
+                                    <label for="occupation_agent"
+                                       >an agent</label
+                                    >
+                                    <input
+                                       type="radio"
+                                       value="council"
+                                       id="occupation_council"
+                                       name="occupation"
+                                    />
+                                    <label for="occupation_council"
+                                       >a council employee</label
+                                    >
+                                    <input
+                                       type="radio"
+                                       value="interested"
+                                       id="occupation_interested"
+                                       name="occupation"
+                                    />
+                                    <label for="occupation_interested"
+                                       >just interested</label
+                                    >
+                                    <label class="select-placeholder"
+                                       >Please select</label
+                                    >
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-row">
+                           <div>
+                              <textarea
+                                 class="form-control"
+                                 placeholder="anything else?"
+                                 rows="3"
+                                 name="anything_else"
+                              ></textarea>
+                           </div>
+                        </div>
+
+                        <div class="form-row">
+                           <label for="checkbox" class="hint checkbox">
+                              <input
+                                 type="checkbox"
+                                 id="checkbox"
+                                 name="want_updates"
+                              />
+                              <svg viewBox="0 0 24 24">
+                                 <g fill="none" stroke="#fff" stroke-width="2">
+                                    <polyline
+                                       class="check"
+                                       points="5,13 10,18 19,6"
+                                    />
+                                    <rect x="1" y="1" width="22" height="22" />
+                                 </g>
+                              </svg>
+                              I would like to receive updates and invitations to
+                              future testing workshops
+                           </label>
+                        </div>
+                        <div class="form-row">
+                           <button class="btn" role="submit" tabindex="2">
+                              Request beta invite
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+
+               <p class="hint">
+                  We will not share your personal data with anyone. Read our
+                  full terms of use
+                  <a href="https://www.planx.uk/Terms"> here</a>.
+               </p>
+            </div>
+         </div>
+      </div>
+      <div id="thank-you" class="content">
+         <div class="content-container">
+            <p>
+               Thank you for registering your interest, we'll be in touch soon
+               with a special advance preview link.
+            </p>
+            <a
+               href=""
+               class="btn"
+               onClick="window.location.href=window.location.href"
+               >Go back</a
+            >
+         </div>
+      </div>
+   </body>
+</html>
