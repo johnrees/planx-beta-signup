@@ -182,6 +182,9 @@ label {
   vertical-align: middle;
   position: relative;
 }
+.ie-select select::-ms-expand {
+  display: none;
+}
 .ie-select select {
   height: 3em;
   border-radius: 0;
