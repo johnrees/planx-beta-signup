@@ -12,7 +12,7 @@ html {
 
 body {
   text-rendering: optimizeLegibility;
-  font-family: "Inter UI", "Arial", sans-serif;
+  font-family: 'Inter UI', 'Arial', sans-serif;
   background: #43afe4;
   color: white;
   font-size: 20px;
@@ -26,7 +26,7 @@ button {
   font-family: inherit;
 }
 
-input[type="email"]:valid + div {
+input[type='email']:valid + div {
   display: block !important;
 }
 
@@ -87,10 +87,6 @@ a {
 .btn:hover,
 .btn:focus {
   background-color: #333;
-}
-.btn:disabled {
-  background: grey;
-  cursor: default;
 }
 
 input,
@@ -169,7 +165,13 @@ label {
   display: none;
 }
 
-.radio-select {
+.select-question {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.select-question .radio-select {
   display: none;
 }
 
@@ -193,22 +195,15 @@ label {
 }
 
 @supports (-webkit-appearance: none) {
-  .ie-select {
+  body:not(.is-mobile) .ie-select {
     display: none;
   }
-
-  .select-question {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-  }
-  .select-question input {
+  body:not(.is-mobile) .select-question input {
     position: absolute;
     left: -10000px;
     opacity: 0;
   }
-  .select-question .radio-select {
+  body:not(.is-mobile) .select-question .radio-select {
     flex: 1;
     margin-left: 1rem;
     height: 3em;
@@ -217,7 +212,7 @@ label {
     vertical-align: middle;
     position: relative;
   }
-  .select-question .options {
+  body:not(.is-mobile) .select-question .options {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.1);
     height: 3em;
@@ -229,7 +224,7 @@ label {
     left: 0;
     z-index: 1;
   }
-  .select-question .options label {
+  body:not(.is-mobile) .select-question .options label {
     display: block;
     min-height: 3em;
     padding: 1em 0.5em;
@@ -242,8 +237,8 @@ label {
     overflow: hidden;
     white-space: nowrap;
   }
-  .select-question .options label::before {
-    content: "";
+  body:not(.is-mobile) .select-question .options label::before {
+    content: '';
     position: absolute;
     display: block;
     left: 0;
@@ -253,28 +248,44 @@ label {
     background: #fff;
     opacity: 0;
   }
-  .select-question .options label:hover::before {
+  body:not(.is-mobile) .select-question .options label:hover::before {
     opacity: 0.2;
   }
-  .select-question .options .select-placeholder {
+  body:not(.is-mobile) .select-question .options .select-placeholder {
     order: 1;
     opacity: 0.65;
     background: none;
   }
-  .select-question .options input[type="radio"]:focus + label::before {
+  body:not(.is-mobile)
+    .select-question
+    .options
+    input[type='radio']:focus
+    + label::before {
     opacity: 0.2;
   }
-  .select-question .options input[type="radio"]:checked + label {
+  body:not(.is-mobile)
+    .select-question
+    .options
+    input[type='radio']:checked
+    + label {
     order: 0;
     background: none;
   }
-  .select-question .options input[type="radio"]:checked + label::before {
+  body:not(.is-mobile)
+    .select-question
+    .options
+    input[type='radio']:checked
+    + label::before {
     display: none;
   }
-  .select-question .options input[type="radio"]:checked ~ .select-placeholder {
+  body:not(.is-mobile)
+    .select-question
+    .options
+    input[type='radio']:checked
+    ~ .select-placeholder {
     display: none;
   }
-  .select-question input.select-label + label {
+  body:not(.is-mobile) .select-question input.select-label + label {
     display: block;
     height: 3em;
     top: 0;
@@ -284,8 +295,8 @@ label {
     width: 100%;
     background-color: rgba(255, 255, 255, 0);
   }
-  .select-question input.select-label + label::after {
-    content: "";
+  body:not(.is-mobile) .select-question input.select-label + label::after {
+    content: '';
     display: block;
     height: 0.5rem;
     width: 0.5rem;
@@ -300,19 +311,22 @@ label {
     transform-origin: 50% 60%;
     transition: transform 0.15s ease-out;
   }
-  .select-question input.select-label + label:hover {
+  body:not(.is-mobile) .select-question input.select-label + label:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
-  .select-question input.select-label:focus + label {
+  body:not(.is-mobile) .select-question input.select-label:focus + label {
     background-color: rgba(255, 255, 255, 0.2);
   }
-  .select-question input.select-label:checked + label {
+  body:not(.is-mobile) .select-question input.select-label:checked + label {
     background-color: rgba(255, 255, 255, 0.2);
   }
-  .select-question input.select-label:checked + label::after {
+  body:not(.is-mobile)
+    .select-question
+    input.select-label:checked
+    + label::after {
     transform: rotate(135deg);
   }
-  .select-question input.select-label:checked ~ .options {
+  body:not(.is-mobile) .select-question input.select-label:checked ~ .options {
     overflow: visible;
   }
 }

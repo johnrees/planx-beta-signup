@@ -1,9 +1,9 @@
 $.fn.serializeObject = function() {
-  "use strict";
+  'use strict';
   var a = {},
     b = function(b, c) {
       var d = a[c.name];
-      "undefined" != typeof d && d !== null
+      'undefined' != typeof d && d !== null
         ? $.isArray(d)
           ? d.push(c.value)
           : (a[c.name] = [d, c.value])
@@ -13,55 +13,69 @@ $.fn.serializeObject = function() {
 };
 
 function submitted() {
-  $("#content").fadeOut(() => {
-    $("#thank-you").fadeIn();
+  $('#content').fadeOut(() => {
+    $('#thank-you').fadeIn();
   });
 }
 
 $.when($.ready).then(function() {
-  var $body = $("body"),
-    $select = $("#select_label");
+  var is_mobile = false;
 
-  $("#select_label").on("click", function(e) {
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
+  ) {
+    is_mobile = true;
+  }
+
+  var $body = $('body'),
+    $select = $('#select_label');
+
+  if (is_mobile) {
+    $body.addClass('is-mobile');
+  }
+
+  $('#select_label').on('click', function(e) {
     e.stopPropagation();
-    if ($select.is(":checked")) {
-      $body.on("click", function(e) {
-        if (!$(e.target).is("#select_label + label")) {
-          $select.prop("checked", false);
-          $body.off("click");
+    if ($select.is(':checked')) {
+      $body.on('click', function(e) {
+        if (!$(e.target).is('#select_label + label')) {
+          $select.prop('checked', false);
+          $body.off('click');
         }
       });
     }
   });
 
-  $("#options label").click(function() {
-    $select.prop("checked", false);
+  $('#options label').click(function() {
+    $select.prop('checked', false);
   });
 
-  $("#form").on("submit", e => {
+  $('#form').on('submit', e => {
     e.preventDefault();
 
     if (!$("input[name='occupation']:checked").val())
-      return alert("please choose an occupation");
+      return alert('please choose an occupation');
 
-    $("#form").prop("disabled", true);
-    $("#submit").prop("disabled", true);
+    $('#form').prop('disabled', true);
+    $('#submit').prop('disabled', true);
 
     const url =
-      "https://script.google.com/macros/s/AKfycbwT_FNQfkN9vJfZnIMkN273_ethCsO5TRPwnI-f8CFnACMFdv8/exec";
+      'https://script.google.com/macros/s/AKfycbwT_FNQfkN9vJfZnIMkN273_ethCsO5TRPwnI-f8CFnACMFdv8/exec';
     $.ajax({
       url,
-      method: "GET",
-      dataType: "json",
-      data: $("#form").serializeObject()
+      method: 'GET',
+      dataType: 'json',
+      data: $('#form').serializeObject(),
     })
       .done(submitted)
       .fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Probably a CORS error...");
+        console.error('Probably a CORS error...');
         submitted();
       })
       .always(function() {
-        console.log("done");
+        console.log('done');
       });
   });
 });
