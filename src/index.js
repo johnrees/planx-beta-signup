@@ -1,3 +1,8 @@
+// const URL =
+//   "https://script.google.com/macros/s/AKfycbwT_FNQfkN9vJfZnIMkN273_ethCsO5TRPwnI-f8CFnACMFdv8/exec";
+const URL = "http://localhost:3000";
+const URL = "https://planx-beta-signup.herokuapp.com";
+
 $.fn.serializeObject = function() {
   "use strict";
   var a = {},
@@ -47,13 +52,11 @@ $.when($.ready).then(function() {
     $("#form").prop("disabled", true);
     $("#submit").prop("disabled", true);
 
-    const url =
-      "https://script.google.com/macros/s/AKfycbwT_FNQfkN9vJfZnIMkN273_ethCsO5TRPwnI-f8CFnACMFdv8/exec";
     $.ajax({
-      url,
-      method: "GET",
+      url: URL,
+      method: "POST",
       dataType: "json",
-      data: $("#form").serializeObject()
+      data: { user: $("#form").serializeObject() }
     })
       .done(submitted)
       .fail(function(jqXHR, textStatus, errorThrown) {
