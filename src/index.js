@@ -66,11 +66,14 @@ $.when($.ready).then(function() {
     $("#form").prop("disabled", true);
     $("#submit").prop("disabled", true);
 
+    const user = $("#form").serializeObject();
+    console.log({ user });
+
     $.ajax({
       url: URL,
       method: "POST",
       dataType: "json",
-      data: { user: $("#form").serializeObject() }
+      data: { user }
     })
       .done(submitted)
       .fail(function(jqXHR, textStatus, errorThrown) {
