@@ -60,7 +60,7 @@ $.when($.ready).then(function() {
   $("#form").on("submit", e => {
     e.preventDefault();
 
-    if (!$("input[name='occupation']:checked").val())
+    if (!$("input[name='occupation']:checked").val() && !$("#select").val())
       return alert("please choose an occupation");
 
     $("#form").prop("disabled", true);
