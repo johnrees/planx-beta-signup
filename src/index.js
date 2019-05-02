@@ -3,19 +3,23 @@
 // const URL = "http://localhost:3000/users";
 const URL = "https://planx-beta-signup.herokuapp.com/users";
 
-$.fn.serializeObject = function() {
-  "use strict";
-  var a = {},
-    b = function(b, c) {
-      var d = a[c.name];
-      "undefined" != typeof d && d !== null
-        ? $.isArray(d)
-          ? d.push(c.value)
-          : (a[c.name] = [d, c.value])
-        : (a[c.name] = c.value);
-    };
-  return $.each(this.serializeArray(), b), a;
-};
+(function($) {
+  $.fn.serializeFormJSON = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+      if (o[this.name]) {
+        if (!o[this.name].push) {
+          o[this.name] = [o[this.name]];
+        }
+        o[this.name].push(this.value || "");
+      } else {
+        o[this.name] = this.value || "";
+      }
+    });
+    return o;
+  };
+})(jQuery);
 
 function submitted() {
   $("#content").fadeOut(() => {
@@ -66,7 +70,7 @@ $.when($.ready).then(function() {
     $("#form").prop("disabled", true);
     $("#submit").prop("disabled", true);
 
-    const user = $("#form").serializeObject();
+    const user = $("#form").serializeFormJSON();
     console.log(JSON.stringify(user, null, 2));
 
     $.ajax({
