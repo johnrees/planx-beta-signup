@@ -24,8 +24,22 @@ function submitted() {
 }
 
 $.when($.ready).then(function() {
+  var is_mobile = false;
+
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+  ) {
+    is_mobile = true;
+  }
+
   var $body = $("body"),
     $select = $("#select_label");
+
+  if (is_mobile) {
+    $body.addClass("is-mobile");
+  }
 
   $("#select_label").on("click", function(e) {
     e.stopPropagation();
