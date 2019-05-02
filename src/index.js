@@ -67,7 +67,7 @@ $.when($.ready).then(function() {
     $("#submit").prop("disabled", true);
 
     const user = $("#form").serializeObject();
-    console.log({ user });
+    console.log(JSON.stringify(user, null, 2));
 
     $.ajax({
       url: URL,
