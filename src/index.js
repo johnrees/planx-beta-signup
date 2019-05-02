@@ -1,6 +1,6 @@
 // const URL =
 //   "https://script.google.com/macros/s/AKfycbwT_FNQfkN9vJfZnIMkN273_ethCsO5TRPwnI-f8CFnACMFdv8/exec";
-const URL = "http://localhost:3000";
+// const URL = "http://localhost:3000";
 const URL = "https://planx-beta-signup.herokuapp.com";
 
 $.fn.serializeObject = function() {
