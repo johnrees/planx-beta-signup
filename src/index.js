@@ -3,24 +3,6 @@
 // const URL = "http://localhost:3000/users";
 const URL = "https://planx-beta-signup.herokuapp.com/users";
 
-(function($) {
-  $.fn.serializeFormJSON = function() {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function() {
-      if (o[this.name]) {
-        if (!o[this.name].push) {
-          o[this.name] = [o[this.name]];
-        }
-        o[this.name].push(this.value || "");
-      } else {
-        o[this.name] = this.value || "";
-      }
-    });
-    return o;
-  };
-})(jQuery);
-
 function submitted() {
   $("#content").fadeOut(() => {
     $("#thank-you").fadeIn();
@@ -61,23 +43,34 @@ $.when($.ready).then(function() {
     $select.prop("checked", false);
   });
 
-  $("#form").on("submit", e => {
+  $("form#form").on("submit", function(e) {
     e.preventDefault();
 
     if (!$("input[name='occupation']:checked").val() && !$("#select").val())
       return alert("please choose an occupation");
 
-    $("#form").prop("disabled", true);
-    $("#submit").prop("disabled", true);
+    var o = {};
+    var a = $(this).serializeArray();
 
-    const user = $("#form").serializeFormJSON();
-    console.log(JSON.stringify(user, null, 2));
+    a.forEach(item => {
+      if (o[item.name]) {
+        if (!o[item.name].push) {
+          o[item.name] = [o[item.name]];
+        }
+        o[item.name].push(item.value || "");
+      } else {
+        o[item.name] = item.value || "";
+      }
+    });
+
+    const data = { user: o };
+    console.log(JSON.stringify(data, null, 2));
 
     $.ajax({
       url: URL,
       method: "POST",
       dataType: "json",
-      data: { user }
+      data
     })
       .done(submitted)
       .fail(function(jqXHR, textStatus, errorThrown) {
@@ -87,5 +80,9 @@ $.when($.ready).then(function() {
       .always(function() {
         console.log("done");
       });
+
+    //must be last otherwise ie11 will not get form values
+    $(this).prop("disabled", true);
+    $("#submit").prop("disabled", true);
   });
 });
